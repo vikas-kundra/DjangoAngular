@@ -10,15 +10,14 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
   {% load staticfiles %}
-    <script src="{% static "userapp/new_ang.js" %}"></script>
     <script src="{% static "userapp/angular_service.js" %}"></script>
-
+    <script src="{% static "userapp/new_ang.js" %}"></script>
 </head>
 
 <body ng-app="formApp" ng-controller="formController">
 <h1> Login Using Ajax Call </h1>
 
-<form id="myform"  ng-submit="processForm()">{% csrf_token %}
+<form id="myform"  ng-submit="newprocessForm()">{% csrf_token %}
     <input type= "text" name= "email" ng-model="formData.email">
      <input type="password" name = "password" ng-model="formData.password" />
      <button type="submit">Submit</button>

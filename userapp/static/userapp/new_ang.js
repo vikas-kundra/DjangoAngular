@@ -1,34 +1,22 @@
-
-
-var formApp = angular.module('formApp', []).config(function($httpProvider) {
-    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-});
+var formApp = angular.module('formApp',['commons']);
 
     // create angular controller and pass in $scope and $http
-    formApp.controller("formController",function($scope,$http) {
-     $scope.formData = {};
+formApp.controller("formController",['$scope','$http','AjaxCall',function($scope,$http, AjaxCall) {
 
-  $scope.processForm = function() {
-  $http({
-  method  : 'POST',
-  url     : '/userapp/latestlogin/',
-  data    : $.param($scope.formData),  // pass in data as strings
-  headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
- })
-  .success(function(data) {
-    console.log("Values are");
-    console.log(data);
-    $scope.custom = data.success;
-    if (data.success == 'true')
-    {
-    console.log("Redirection possible");
-    window.location ="/userapp/index";
-    }
-    else
-    {
-    $scope.custom = 'Please enter the correct credentials';
-    }
+    $scope.formData = {};
+         $scope.newprocessForm = function() {
+            var data_val;
+            data_val = $.param($scope.formData);
+            console.log('Value before is')
+             console.log(data_val)
+             AjaxCall.val(data_val).success(function(data) {
+                 console.log("Values are");
+                 console.log(data);
+             })
+            console.log('Ending')
+        };
 
-    })
-    }});
+}]);
+
+
+
