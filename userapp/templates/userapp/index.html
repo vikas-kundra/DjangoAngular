@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example8-production</title>
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
+  {% load staticfiles %}
+    <script src="{% static "userapp/app.js" %}"></script>
+
+
+
+</head>
+
+
+<h1> DashBoard </h1>
+
+
+<div class="page-header">
+            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            <h1><a href="{% url 'post_new' %}">Insert Record</a></h1></div>
+
+ <div class="page-header">
+            <a href="{% url 'display' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            <h1><a href="{% url 'display' %}">Display Record</a></h1></div>
+
+    {% if user.is_authenticated  %}
+Content for logged in users.
+{% else %}
+Content for non-logged in users.
+{% endif %}
+
+
+
+
+<body>
+
+<div ng-app="myApp" ng-controller="SpicyController" ng-cloak>
+<input ng-model="customSpice">
+<button ng-click="static()">Chili</button>
+<button ng-click="spicy()">Custom spice</button>
+<p>The food is <span ng-bind ="spice"></span> spicy!</p>
+
+
+<select ng-options="name.name for name in names" ng-model="selected">
+</select>
+
+<p>Value for currency is <span ng-bind="selected.currency"></span></p>
+</div>
+
+
+
+
+</body>
+</html>
+

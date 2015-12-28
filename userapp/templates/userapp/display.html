@@ -1,0 +1,10 @@
+{% if data_list %}
+    <ul>
+    {% for data in data_list %}
+        <li>{{ data.user_name }}</li>
+        <b>{{ data.country }}</b>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No data is available.</p>
+{% endif %}

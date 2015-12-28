@@ -1,0 +1,8 @@
+{% block content %}
+    <h1>Register</h1>
+    <form method="POST" class="register-form">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ NEXT }}" />
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}
