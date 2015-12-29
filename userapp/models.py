@@ -9,6 +9,9 @@ class User(AbstractBaseUser):
     Custom user class.
     """
     email = models.EmailField('email address', unique=True, db_index=True)
+    name  = models.CharField(max_length=30, default='None')
+    age = models.CharField(max_length=10, default=20)
+    country = models.CharField(max_length=30, default='India')
     joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=True)

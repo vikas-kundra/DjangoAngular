@@ -50,6 +50,36 @@ def index(request):
     else:
         return HttpResponseRedirect('/userapp/login/')
 
+
+
+class dashboard(generics.ListAPIView):
+
+    def get(self, request, format='None'):
+        #if request.user.is_authenticated():
+        #    data_list = User.objects.all
+        #data_list = User_new.objects.all
+        data_list = request.data['email']
+
+        template = loader.get_template('userapp/index.html')
+        context = RequestContext(request, {
+            'data_list': data_list,
+            })
+        return HttpResponse(template.render(context))
+
+    def post(self,request,format='None'):
+
+        data_list = request.data['email']
+
+        template = loader.get_template('userapp/index.html')
+        context = RequestContext(request, {
+            'data_list': data_list,
+            })
+        return HttpResponse(template.render(context))
+
+
+
+
+
 """
 Function to display all data present in User_new table
 """
