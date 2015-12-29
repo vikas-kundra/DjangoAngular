@@ -11,7 +11,8 @@ from django.contrib.auth.decorators import login_required
 #from django.contrib.auth import authenticate, login
 from django.contrib.auth import authenticate, get_backends
 #fro    m .backends import ClientAuthBackend
-from .models import User, User_new
+from .models import User, User_new, UserDetails
+
 from .serializers import User_new_serializer, User_serializer
 from userapp.forms import AuthenticationForm, RegistrationForm
 from django.shortcuts import render_to_response
@@ -285,6 +286,20 @@ class NewUserListAng(generics.ListAPIView):
 
     def post(self, request, format='None'):
         New_User = User_new(user_name=request.data['username'],password=request.data['password'],age=request.data['age'],country=request.data['country'])
+        New_User.save()
+        val = {}
+        val['data'] = 'success'
+        return Response(val)
+
+
+class NewUserDetailsListAng(generics.ListAPIView):
+
+    def get(self, request, format='None'):
+        return render_to_response("userapp/new_user_ang.html")
+
+
+    def post(self, request, format='None'):
+        New_User = UserDetails(email=request.data['email'],name=request.data['username'],age=request.data['age'],country=request.data['country'],password=request.data['password'])
         New_User.save()
         val = {}
         val['data'] = 'success'

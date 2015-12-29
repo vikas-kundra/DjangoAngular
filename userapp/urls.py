@@ -18,5 +18,7 @@ urlpatterns = [
     url(r'^age/$', views.country, name='age'),
     url(r'^([0-9]+)/detail/$', views.detail, name='detail'),
 #    url(r'^post/new/$', views.post_new, name='post_new'),
-    url(r'^post/new/$', views.NewUserListAng.as_view(), name='post_new')
+#    url(r'^post/new/$', views.NewUserListAng.as_view(), name='post_new')
+    url(r'^post/new/$', views.NewUserDetailsListAng.as_view(), name='post_new')
+
 ]

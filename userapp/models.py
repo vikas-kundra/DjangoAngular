@@ -1,3 +1,4 @@
+
 from django.db import models
 
 
@@ -40,3 +41,13 @@ class User_new(models.Model):
         return self.user_name
 
 
+
+class UserDetails(models.Model):
+    email = models.EmailField()
+    name  = models.CharField(max_length=30)
+    age = models.CharField(max_length=10)
+    country = models.CharField(max_length=30)
+    password = models.CharField(max_length=8,default='none')
+
+    def __str__(self):
+        return self.name
