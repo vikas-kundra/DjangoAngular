@@ -13,6 +13,9 @@ class User_serializer(serializers.ModelSerializer):
         fields = ('email', 'password')
 
 
+class test_serializer(serializers.Serializer):
+    email = serializers.EmailField()
+
 
 
 

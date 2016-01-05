@@ -54,15 +54,26 @@ def index(request):
 
 class dashboard(generics.ListAPIView):
 
+    lookup_url_kwarg = 'email'
     def get(self, request, format='None'):
         #if request.user.is_authenticated():
         #    data_list = User.objects.all
         #data_list = User_new.objects.all
-        #data_list = request.data['email']
         data_list = []
+        s_data_list = []
+        j_data_list = []
+        ##data_list = self.kwargs.get(self.lookup_url_kwarg)
+        email_obtained = self.request.query_params.get('email', None)
+        if email_obtained is not None:
+            data_list = User.objects.filter(email=email_obtained)
+            s_data_list = User_serializer(data_list,many='true')
+        #data_list = 'Entered email'
+            j_data_list = json.dumps(s_data_list.data)
+
+
         template = loader.get_template('userapp/index.html')
         context = RequestContext(request, {
-            'data_list': data_list,
+            'data_list': j_data_list,
             })
         return HttpResponse(template.render(context))
 

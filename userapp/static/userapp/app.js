@@ -11,11 +11,8 @@ myApp.config(['$routeProvider','$locationProvider',
             }).when('/insert', {
                 template : '<h2>Welcome to insert page</h2>',
                 controller  : 'insertController'
-            }).when('/index', {
-                templateUrl : '../templates/userapp/pages/index.html',
-                controller  : 'SpicyController'
             }).otherwise({
-                redirectTo: '/index'
+                redirectTo: '/'
             });
 
     }]);

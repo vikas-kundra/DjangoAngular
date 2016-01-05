@@ -38,10 +38,13 @@ formApp.controller("formController", ['$scope', '$http', 'AjaxCall','$location',
             console.log("Values are");
             console.log(data);
             if (data.success == 'true') {
+                new_url = ''
                 method = 'POST';
                 url = '/userapp/index/';
                 console.log("Redirection possible");
-              window.location ="/userapp/index";
+                new_url = "/userapp/index?" + email_val;
+                console.log("/userapp/index?" + email_val)
+              window.location =new_url;
                 AjaxCall.val(method,url,email_val).success(function(data){
                     console.log('Call Successful');
                     //$location.path('/success12');
