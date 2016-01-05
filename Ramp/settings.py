@@ -14,8 +14,12 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+ROOT_PATH = os.path.dirname(__file__)
+STATICFILES_DIRS = [
+    os.path.join('/home/ubuntu/Documents/Ramp/userapp/', "assets")
+    ]
+STATIC_ROOT='/home/ubuntu/Documents/Ramp/userapp/static'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 

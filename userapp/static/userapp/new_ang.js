@@ -1,7 +1,21 @@
-var formApp = angular.module('formApp', ['commons']);
+var formApp = angular.module('formApp', ['commons','ngRoute']);
+
+
+formApp.config(['$routeProvider',
+    function($routeProvider) {
+        $routeProvider.
+            when('/success', {
+                templateUrl: 'newPage.html',
+                controller: 'contactController'
+
+            }).otherwise({
+                redirectTo: '/'
+            });
+    }]);
+
 
 // create angular controller and pass in $scope and $http
-formApp.controller("formController", ['$scope', '$http', 'AjaxCall', function ($scope, $http, AjaxCall) {
+formApp.controller("formController", ['$scope', '$http', 'AjaxCall','$location', function ($scope, $http, AjaxCall,$location) {
 
     $scope.formData = {};
     $scope.newprocessForm = function () {
@@ -27,9 +41,12 @@ formApp.controller("formController", ['$scope', '$http', 'AjaxCall', function ($
                 method = 'POST';
                 url = '/userapp/index/';
                 console.log("Redirection possible");
-              //window.location ="/userapp/index";
+              window.location ="/userapp/index";
                 AjaxCall.val(method,url,email_val).success(function(data){
-                    console.log('Call Successful')
+                    console.log('Call Successful');
+                    //$location.path('/success12');
+                    //console.log('Path recieved!!!');
+                //    window.location ="/userapp/index";
                 });
             }
             else {
@@ -44,6 +61,10 @@ formApp.controller("formController", ['$scope', '$http', 'AjaxCall', function ($
     };
 
 }]);
+
+formApp.controller('contactController', function($scope) {
+    $scope.message = 'Contact us! JK. This is just a demo.';
+});
 
 
 

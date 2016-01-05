@@ -58,8 +58,8 @@ class dashboard(generics.ListAPIView):
         #if request.user.is_authenticated():
         #    data_list = User.objects.all
         #data_list = User_new.objects.all
-        data_list = request.data['email']
-
+        #data_list = request.data['email']
+        data_list = []
         template = loader.get_template('userapp/index.html')
         context = RequestContext(request, {
             'data_list': data_list,

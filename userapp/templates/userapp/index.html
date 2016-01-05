@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+
+<html xmlns="http://www.w3.org/1999/html" ng-app="myApp">
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example8-production</title>
+    <base href="/userapp/index">
 
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
-
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
-  {% load staticfiles %}
-    <script src="{% static "userapp/app.js" %}"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    {% load staticfiles %}
+    <script src="{% static "userapp/app.js"%}"></script>
 
 
 
@@ -20,12 +22,12 @@
 
 
 <div class="page-header">
-            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            <h1><a href="{% url 'post_new' %}">Insert Record</a></h1></div>
+
+            <h1><a href="#/insert">Insert Record</a></h1></div>
 
  <div class="page-header">
-            <a href="{% url 'display' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            <h1><a href="{% url 'display' %}">Display Record</a></h1></div>
+
+            <h1><a href="#/display">Display Record</a></h1></div>
 
     {% if user.is_authenticated  %}
 Content for logged in users.
@@ -38,7 +40,7 @@ Content for non-logged in users.
 
 <body>
 
-<div ng-app="myApp" ng-controller="SpicyController" ng-cloak>
+<div  ng-controller="SpicyController" ng-cloak>
 <input ng-model="customSpice">
 <button ng-click="static()">Chili</button>
 <button ng-click="spicy()">Custom spice</button>
@@ -52,7 +54,7 @@ Content for non-logged in users.
 </div>
 
 
-
+<div ng-view></div>
 
 </body>
 </html>
