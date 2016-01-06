@@ -1,5 +1,5 @@
 
-<html xmlns="http://www.w3.org/1999/html" ng-app="myApp">
+<html xmlns="http://www.w3.org/1999/html" ng-app="myApp" >
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example8-production</title>
@@ -12,6 +12,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     {% load staticfiles %}
     <script src="{% static "userapp/app.js"%}"></script>
+
 
 
 
@@ -36,13 +37,17 @@ Content for non-logged in users.
 {% endif %}
 
 {{data_list}}
+<div>
 
-
-
+<input type="text" id="testV" name="testV" value="{{data_list}}">
+</div>
 <body>
 
+<div>
 <div  ng-controller="SpicyController" ng-cloak>
+
 <input ng-model="customSpice">
+<input ng-model="checkV">
 <button ng-click="static()">Chili</button>
 <button ng-click="spicy()">Custom spice</button>
 <p>The food is <span ng-bind ="spice"></span> spicy!</p>
@@ -56,7 +61,7 @@ Content for non-logged in users.
 
 
 <div ng-view></div>
-
+</div>
 </body>
 </html>
 

@@ -68,8 +68,8 @@ class dashboard(generics.ListAPIView):
             data_list = User.objects.filter(email=email_obtained)
             s_data_list = User_serializer(data_list,many='true')
         #data_list = 'Entered email'
-            j_data_list = json.dumps(s_data_list.data)
-
+            #j_data_list = json.dumps(s_data_list.data)
+            j_data_list = s_data_list.data[0]['email']
 
         template = loader.get_template('userapp/index.html')
         context = RequestContext(request, {
@@ -345,3 +345,21 @@ class NewUserDetailsListAng(generics.ListAPIView):
         val = {}
         val['data'] = 'success'
         return Response(val)
+
+
+
+class NewUserClass(generics.ListAPIView):
+
+    def get(self, request, format='None'):
+        return render_to_response("userapp/new_user_ang.html")
+
+
+    def post(self, request, format='None'):
+        password_val = request.data['password']
+        New_User = User(email=request.data['email'],name=request.data['username'],age=request.data['age'],country=request.data['country'])
+        New_User.set_password(password_val)
+        New_User.save()
+        val = {}
+        val['data'] = 'success'
+        return Response(val)
+
