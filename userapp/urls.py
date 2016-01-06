@@ -17,7 +17,8 @@ urlpatterns = [
     #url(r'^userapp/login/$', auth_views.login),
     #url(r'^index/$', views.index, name='index'),
 
-    url(r'^display/$', views.display, name='display'),
+    #url(r'^display/$', views.display, name='display'),
+    url(r'^display/$', views.DisplayUserList.as_view(), name='display'),
     # ex: /polls/5/
     url(r'^age/$', views.country, name='age'),
     url(r'^([0-9]+)/detail/$', views.detail, name='detail'),

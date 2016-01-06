@@ -15,6 +15,9 @@ class User_serializer(serializers.ModelSerializer):
 
 class test_serializer(serializers.Serializer):
     email = serializers.EmailField()
+    joined = serializers.DateTimeField()
+    age = serializers.IntegerField()
+    country = serializers.CharField()
 
 
 

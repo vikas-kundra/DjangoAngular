@@ -12,7 +12,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     {% load staticfiles %}
     <script src="{% static "userapp/app.js"%}"></script>
-
+    <script src="{% static "userapp/angular_service.js" %}"></script>
 
 
 
@@ -37,6 +37,7 @@ Content for non-logged in users.
 {% endif %}
 
 {{data_list}}
+
 <div>
 
 <input type="text" id="testV" name="testV" value="{{data_list}}">
@@ -50,6 +51,28 @@ Content for non-logged in users.
 <input ng-model="checkV">
 <button ng-click="static()">Chili</button>
 <button ng-click="spicy()">Custom spice</button>
+
+<button ng-click="displayF()">Display Check</button>
+
+
+
+    {%verbatim%}
+        <table border="1" cellpadding="10">
+            <tr>
+                <td>Email </td>
+                <td>Country</td>
+                <td>Age</td>
+            </tr>
+            <tr ng-repeat="data in table_data track by $index">
+                <td>{{data.email}}</td>
+                <td>{{data.country}}</td>
+                <td>{{data.age}}</td>
+
+
+            </tr>
+        </table>
+
+    {%endverbatim%}
 <p>The food is <span ng-bind ="spice"></span> spicy!</p>
 
 

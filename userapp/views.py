@@ -13,7 +13,7 @@ from django.contrib.auth import authenticate, get_backends
 #fro    m .backends import ClientAuthBackend
 from .models import User, User_new, UserDetails
 
-from .serializers import User_new_serializer, User_serializer
+from .serializers import User_new_serializer, User_serializer, test_serializer
 from userapp.forms import AuthenticationForm, RegistrationForm
 from django.shortcuts import render_to_response
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
@@ -277,7 +277,7 @@ class UserList(generics.ListAPIView):
             return Response(val)
 
 """
-Class containing code for latest_login page
+Class containing code for API call for  login mechanism
 """
 
 
@@ -318,6 +318,16 @@ class NewUserList(generics.ListAPIView):
             return Response(val)
 
 
+class DisplayUserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = test_serializer
+    renderer_classes = (JSONRenderer,)
+
+    def get(self, request, format='None'):
+        objects_recieved = User.objects.all()
+        serialized_object = test_serializer(objects_recieved,many='true')
+        json_return = JSONRenderer().render(serialized_object.data)
+        return Response(json_return)
 
 class NewUserListAng(generics.ListAPIView):
 
