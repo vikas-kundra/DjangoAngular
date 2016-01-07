@@ -65,10 +65,6 @@ myApp.controller('SpicyController', ['$scope','$http', 'AjaxCall', function ($sc
 }]);
 
 
-myApp.controller('displayController', function ($scope) {
-    $scope.message = 'Look! I am an about display.';
-});
-
 myApp.controller('insertController', function ($scope) {
     $scope.message = 'This is insert page.';
 });
@@ -76,7 +72,7 @@ myApp.controller('insertController', function ($scope) {
 
 myApp.controller("mainController", function ($scope, $http) {
     $scope.user = {};
-
+    console.log("Inside main controller!!!")
     $scope.submitForm = function (isValid) {
 
         if (isValid) {
@@ -117,3 +113,24 @@ myApp.controller("mainController", function ($scope, $http) {
     };
 });
 ;
+
+myApp.controller("displayController",['$scope','$http', 'AjaxCall', function ($scope,$http,AjaxCall){
+
+    $scope.table_data = '';
+    console.log('Inside Display Controller function');
+    method = 'GET';
+    url = '/userapp/display/';
+    data_val = '';
+    console.log('Making call!!!')
+    AjaxCall.val(method, url, data_val).success(function (data) {
+        console.log('Call for button click successful');
+        console.log(data);
+        $scope.table_data = JSON.parse(data);
+        console.log('Value in angularjs');
+        console.log($scope.table_data);
+        console.log('Type is!!1');
+        console.log(typeof $scope.table_data)
+    });
+
+}
+]);

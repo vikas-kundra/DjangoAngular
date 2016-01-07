@@ -10,7 +10,7 @@ var commons = angular.module('commons', []).config(function ($httpProvider) {
 
 commons.service('AjaxCall', function ($http) {
     this.val = function (method,url,dataval) {
-        console.log('Inside ajaxCall');
+        console.log('Inside Ajax service ajaxCall');
         console.log(dataval)
     return     $http({
             method: method,
