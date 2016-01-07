@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Example - example-example8-production</title>
-    <base href="/userapp/index">
+
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
 
@@ -13,18 +13,23 @@
     {% load staticfiles %}
     <script src="{% static "userapp/app.js"%}"></script>
     <script src="{% static "userapp/angular_service.js" %}"></script>
-
+    <script src="{% static "userapp/new_user.js" %}"></script>
 
 
 </head>
 
 
-<h1> DashBoard </h1>
+        <header>
+        <h1> Angular + Django Rampup </h1>
+        </header>
+
+
+
 
 
 <div class="page-header">
 
-            <h1><a href="#/insert">Insert Record</a></h1></div>
+            <h1><a href="#insert">Insert Record</a></h1></div>
 
  <div class="page-header">
 
@@ -38,53 +43,14 @@ Content for non-logged in users.
 
 {{data_list}}
 
-<div>
-
-<input type="text" id="testV" name="testV" value="{{data_list}}">
-</div>
-<body>
-
-<div>
-<div  ng-controller="SpicyController" ng-cloak>
-
-<input ng-model="customSpice">
-<input ng-model="checkV">
-<button ng-click="static()">Chili</button>
-<button ng-click="spicy()">Custom spice</button>
-
-<button ng-click="displayF()">Display Check</button>
-
-
-
-    {%verbatim%}
-        <table border="1" cellpadding="10">
-            <tr>
-                <td>Email </td>
-                <td>Country</td>
-                <td>Age</td>
-            </tr>
-            <tr ng-repeat="data in table_data track by $index">
-                <td>{{data.email}}</td>
-                <td>{{data.country}}</td>
-                <td>{{data.age}}</td>
-
-
-            </tr>
-        </table>
-
-    {%endverbatim%}
-<p>The food is <span ng-bind ="spice"></span> spicy!</p>
-
-
-<select ng-options="name.name for name in names" ng-model="selected">
-</select>
-
-<p>Value for currency is <span ng-bind="selected.currency"></span></p>
-</div>
-
+<div id="main">
 
 <div ng-view></div>
 </div>
-</body>
+
+
+<footer>
+        <h1> End of page </h1>
+        </footer>
 </html>
 

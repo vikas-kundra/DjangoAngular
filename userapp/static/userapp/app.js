@@ -5,17 +5,19 @@ var myApp = angular.module('myApp', ['commons', 'ngRoute']).config(function ($ht
 
 myApp.config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
+
         $routeProvider.
             when('/display', {
-                templateUrl: 'static/userapp/newPage.html',
+                templateUrl: '../static/userapp/newPage.html',
                 controller: 'displayController'
 
             }).when('/insert', {
-                templateUrl: 'static/userapp/new_user_ang.html',
+                templateUrl: '../static/userapp/new_user_ang.html',
                 controller: 'mainController'
             }).otherwise({
-                redirectTo: '/'
-            });
+            templateUrl: '../static/userapp/dashboard.html',
+            controller: 'SpicyController'
+        });
 
     }]);
 

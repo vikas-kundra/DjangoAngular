@@ -1,0 +1,49 @@
+<div>
+
+<div>
+    <input type="text" id="testV" name="testV" value="{{data_list}}">
+</div>
+
+
+<div>
+    <div  ng-controller="SpicyController" ng-cloak>
+
+        <input ng-model="customSpice">
+        <input ng-model="checkV">
+        <button ng-click="static()">Chili</button>
+        <button ng-click="spicy()">Custom spice</button>
+
+        <button ng-click="displayF()">Display Check</button>
+
+
+
+        {%verbatim%}
+        <table border="1" cellpadding="10">
+            <tr>
+                <td>Email </td>
+                <td>Country</td>
+                <td>Age</td>
+            </tr>
+            <tr ng-repeat="data in table_data track by $index">
+                <td>{{data.email}}</td>
+                <td>{{data.country}}</td>
+                <td>{{data.age}}</td>
+
+
+            </tr>
+        </table>
+
+        {%endverbatim%}
+        <p>The food is <span ng-bind ="spice"></span> spicy!</p>
+
+
+        <select ng-options="name.name for name in names" ng-model="selected">
+        </select>
+
+        <p>Value for currency is <span ng-bind="selected.currency"></span></p>
+    </div>
+
+
+
+</div>
+</div>

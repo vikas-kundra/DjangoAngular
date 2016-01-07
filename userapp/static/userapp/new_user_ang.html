@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
-
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    {% load staticfiles %}
-    <script src="{% static "userapp/new_user.js" %}"></script>
-
-
-</head>
-<body ng-app="validApp" ng-controller="mainController">
+<div ng-controller="mainController">
 <h1> Insertion Using Angular JS Validation </h1>
-<form ng-submit="submitForm(userForm.$valid)" novalidate>{% csrf_token %}<!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+<form ng-submit="submitForm(userForm.$valid)" novalidate><!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
 <div ng-form="userForm" >
 
 
@@ -63,5 +48,5 @@
 
     </div>
 </form>
-</body>
+</div>
 </html>
