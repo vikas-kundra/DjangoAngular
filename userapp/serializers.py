@@ -20,8 +20,17 @@ class test_serializer(serializers.Serializer):
     country = serializers.CharField()
 
 
+class insert_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email','name','age','country','password')
 
+    def create(self, validated_data):
+        print 'Object getting created now'
+        print validated_data
 
-
-
-
+        user = User.objects.create(**validated_data)
+        print 'Obtaining password'
+        user.set_password(validated_data.get('password'))
+        user.save()
+        return user

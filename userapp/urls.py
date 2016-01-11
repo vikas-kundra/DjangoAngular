@@ -25,6 +25,8 @@ urlpatterns = [
 #    url(r'^post/new/$', views.post_new, name='post_new'),
 #    url(r'^post/new/$', views.NewUserListAng.as_view(), name='post_new')
     #url(r'^post/new/$', views.NewUserDetailsListAng.as_view(), name='post_new')
-    url(r'^post/new/$', views.NewUserClass.as_view(), name='post_new')
+#    url(r'^post/new/$', views.NewUserClass.as_view(), name='post_new')
+    url(r'^post/new/$', views.NewUserInsert.as_view(), name='post_new')
+#url(r'^post/new/$', views.test_insertion, name='post_new')
 
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

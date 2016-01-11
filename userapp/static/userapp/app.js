@@ -70,30 +70,40 @@ myApp.controller('insertController', function ($scope) {
 });
 
 
-myApp.controller("mainController", function ($scope, $http) {
+myApp.controller("mainController",['$scope','$http','AjaxCall', function ($scope, $http, AjaxCall) {
     $scope.user = {};
-    console.log("Inside main controller!!!")
+    console.log("Inside main controller!!!");
     $scope.submitForm = function (isValid) {
 
         if (isValid) {
 
+            data_json = $scope.user;
+            console.log("Data to be sent");
+            console.log(data_json);
+            console.log("Trying out")
+            console.log(JSON.stringify(data_json))
+            delete data_json.confirmPassword;
 
-
+            method = 'POST';
+            url = '/userapp/post/new/';
+           // data_val = JSON.stringify(data_json);
             //Code For ajax call for sending function
-
             $http({
-                method: 'POST',
-                url: '/userapp/post/new/',
-                data: $.param($scope.user),  // pass in data as strings
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}  // set the headers so angular passing info as form data (not request payload)
-            })
-                .success(function (data) {
+                method: method,
+                url: url,
+                data: data_json,  // pass in data as strings
+                  // set the headers so angular passing info as form data (not request payload)
+                datatype:'json'
+            })   .success(function (data) {
                     console.log("Form submitted")
+                    console.log(data)
+                }).error(function (data) {
+                    console.log('Ajax Call not completed');
                     console.log(data)
                 })
         }
-    }
-}).directive('equal', function () {
+          }
+}]).directive('equal', function () {
 
     return {
         require: 'ngModel',
@@ -122,7 +132,13 @@ myApp.controller("displayController",['$scope','$http', 'AjaxCall', function ($s
     url = '/userapp/display/';
     data_val = '';
     console.log('Making call!!!')
-    AjaxCall.val(method, url, data_val).success(function (data) {
+    $http({
+        method: method,
+        url: url,
+        data: data_val,  // pass in data as strings
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},  // set the headers so angular passing info as form data (not request payload)
+        datatype:'json'
+    }).success(function (data) {
         console.log('Call for button click successful');
         console.log(data);
         $scope.table_data = JSON.parse(data);
